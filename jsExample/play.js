@@ -75,8 +75,10 @@ person.greet();
 country.history();
 console.log(object.name);
 console.log(object.name, object.age);*/
+/**********************************************************************/
 
-/*ARRAYS*/
+/*
+/!*ARRAYS*!/
 
 const country = {
     country: 'Ghana',
@@ -90,9 +92,9 @@ const country = {
 
 const hobbies = ['Sports','Cooking', true, 23.00, {}]
 
-/*for (let hobby of hobbies){
+/!*for (let hobby of hobbies){
     console.log(hobby);
-}*/
+}*!/
 
 for (let i= 0; i < hobbies.length; i++){
 
@@ -101,4 +103,12 @@ for (let i= 0; i < hobbies.length; i++){
 
 console.log(hobbies.map(hobby =>{
     return 'Hobby : ' + hobby;
-}))
+}))*/
+/*************************************************************************************************/
+
+/*Arrays and Reference Types*/
+
+const country = ['Ghana', 'USA']
+
+country.push('Germany');
+console.log(country)

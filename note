@@ -167,3 +167,12 @@ NOTE: When you have function with only parameter as shown immediate above you ca
 
 16. Arrays & Array Methods
 -https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#
+
+17. Arrays and referencing
+- https://academind.com/learn/javascript/reference-vs-primitive-values/
+
+NOTE: When dealing with reference types Arrays or object we can still push new value in a const variable without it throwing an error
+The reason is because reference types only store an address pointing at the place in memory where the array is stored
+and that pointer this address has not changed by adding a new element .So the things stored as a constant is just this pointer
+or just this address and that has not changed .There the const value has not changed
