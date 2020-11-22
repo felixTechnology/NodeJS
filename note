@@ -1,0 +1,125 @@
+1. To write to a file using a node.js you simple type, one of node.js core modules as below
+-require('fs')
+2.Store the simple file functionality in a variable
+- const fs = require('fs')
+3. Use the variable (fs) which is the file system saved into it to call
+-writeFileSync(''), which is a method made available by the file system object which we are importing .The method will write a file
+to our hard drive
+4. The argument it want is the path to the file ,including the file name and second argument is the content of the the fle
+- fs.writeFileSync('hello.txt','hello Ghana people')
+
+EXAMPLE
+-----
+const fs = require('fs');
+
+fs.writeFileSync('hello.txt','Ghana is for us all');
+5. WE use Node.js to write server-side code
+- User using browser (client)
+- We use html +css _ JS script in the browser
+- First send a request using url
+- A server some using the internet with IP associated with domain
+- On server code is executed that does something with the incoming request and response is sent back in html,css,js file back to the user#
+- On server we don't do stuffs which we wouldnt want to do in the browser because security and performance reasons
+a. Database
+b.authentication
+c.input validation
+d. Your business Logic
+
+
+6. Node.js is not typically limited to running code on a server, it's a js runtime
+-you may not always need a browser
+-you may not always need a server to use node.js
+
+9. it is a great utility script (having access to file to manipulating stuffs)
+- Use in context of web development and server side code
+- run a server
+- It is not just used to run a code that run on the server but also can be used to write the server
+- example a code that takes incoming request and write them to your other codes.
+-Node.js does listening
+RUN SERVER
+----------
+Create server and listen to incoming requests
+
+Business Logic
+-------------
+Handle request ,validate input ,connection to database
+
+RESPONSE
+-----------
+rETURN RESPONSES (HTML,JSON,...) BACK TO THE CLIENT (BROWSER)
+
+
+10. Course Outline
+-JS Refresher
+- Node.js basic
+- efficient development
+-express.js
+-templating engines
+-model-view-controller
+-advanced routes and models
+-Node and sql (mysql)
+-using sequelize
+- node + NoSQL + (MongoDB)
+-Using MongoDB
+-Sessions and Cookies
+-Authentication
+-sending emails
+- UTHENTICATION DEEP DIVE
+-user input validation
+- error handling
+- file uploads and downloads
+-pagination
+- async requests
+- handling payments
+- rest API Basics
+- Advanced REST API Features
+- Using async-await
+- websockets & socket.io
+-GraphQL
+-Deployment
+- Beyond web services
+-Node _ TypeScript , Deno
+
+11. TWO Ways of executing node code
+-REPL
+------
+R- Read (userInput)
+E -evalUate (userInput)
+P - Print Output (Result)
+L -Loop (Wait for new input)
+
+Note: In your terminal , type (node) to allow you perform all coding in the repl
+example: 1+ 1, you can also write to a file ,etc
+
+-quit using (ctrl + c)
+
+- for playgrounds
+
+b. The second way is
+-----------------------
+-using files
+-for real apps
+Predictable sequence of steps
+
+
+12. Getting started
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript
+- https://pro.academind.com/
+-https://developer.mozilla.org/en-US/docs/Learn/JavaScript
+- https://academind.com/learn/javascript/
+-https://academind.com/learn/javascript/reference-vs-primitive-values/
+
+13. JS IS
+-weakly typed of language
+a. No explicit type of assignment (knows types like numbers,text called string or booleans being ture or false,
+you are not forced to define the variable type.
+
+b. DataTypes can be switched dynamically
+
+- Object-Oriented langugae
+a. Data can be organised in logicall objects
+b primitive and reference types
+
+- Versatile language
+a. Runs in browser and directly on a PC/Server
+b. can perform a broad variety of tasks
