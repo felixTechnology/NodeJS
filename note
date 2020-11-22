@@ -195,3 +195,27 @@ NOTE: slice() is used to copy an array and we can pass arguments to narrow down 
 argument
 - spread operator is three dots (...) that we can add infront of an array or of an object .The three dots are operator just like the (+ or -)
 signs . They take the object or array after the operator and pull out the elements or properties and put it to whatever is around  that spread operator
+
+18. Async Code:
+-let say we set timeout, which a function built into  node.js
+-There we define a function that should execute after a certain time or expired
+- Here we use an arrow function but you could use name function
+-second argument is the timer ,let two second (express it in milliseconds , 2sec is 2000 milliseconds)
+-inside the scope you log what you want to display
+
+EXAMPLE:
+----
+setTimeout(() =>{
+    console.log('Timer is done')
+
+}, 1);
+
+console.log('Hello');
+console.log('Hi..!!');
+
+Summary:
+-The two console displays (hi and hello) are synchronous code because they executed right after each other
+-Node.js ofcourse will take some time to execute them but there is no delay unless your hardware has a delay issue
+- It is asyn because it does not execute or finish immediately,it takes a little time
+- Node.js will recognise the so-called callback function , that is if a function should execute in future it should call back later
+-

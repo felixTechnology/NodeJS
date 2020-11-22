@@ -169,6 +169,7 @@ console.log(toArrays(2,4,6,8,10,12))*/
 
 /*DESTRUCTING*/
 
+/*
 const country = {
     country: 'Ghana',
     population: 20_000_000,
@@ -200,13 +201,30 @@ const printChurch = ({churchName, MembershipNum, history}) => {
 
 printChurch(church);
 
-/*OR*/
+/!*OR*!/
 const {churchName, MembershipNum, history} = church;
 console.log(churchName,MembershipNum,history);
 
-/*OR*/
+/!*OR*!/
 
 const hobbies = ['Driving', 'Thinking'];
 
 const [hobby1, hobby2] = hobbies;
-console.log(hobby1,hobby2);
+console.log(hobby1,hobby2);*/
+
+/********************************************************************************************************************/
+
+/*Async Code*/
+
+const fetchData =  (callbacks) =>{
+    setTimeout(() =>{ callbacks('DONE')}, 1500);
+}
+
+setTimeout(() =>{
+    console.log('Timer is done')
+    fetchData( text =>{console.log(text)})
+
+}, 1);
+
+console.log('Hello');
+console.log('Hi..!!');
