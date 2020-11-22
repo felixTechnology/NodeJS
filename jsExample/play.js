@@ -144,7 +144,7 @@ console.log(countryInfo);*/
 
 /*Rest Operator*/
 
-const toArray = (arg1, arg2, arg3) =>{
+/*const toArray = (arg1, arg2, arg3) =>{
 
     return [arg1, arg2, arg3];
 
@@ -156,9 +156,57 @@ console.log(toArray(2,4,6))
 
 const toArrays = (...args) =>{
 
+
     return args;
 
 }
 
 
-console.log(toArrays(2,4,6,8,10,12))
+console.log(toArrays(2,4,6,8,10,12))*/
+
+
+/************************************************************************************************************/
+
+/*DESTRUCTING*/
+
+const country = {
+    country: 'Ghana',
+    population: 20_000_000,
+    history (){
+        console.log('Hi, I am ' + this.country)
+    }
+
+};
+
+const printCountry = personData => {
+      console.log(personData.country)
+}
+
+printCountry(country)
+
+
+const church = {
+    churchName: 'Assemblies',
+    MembershipNum: 2_000,
+    history (){
+        console.log('Hi, I am ' + this.churchName)
+    }
+
+};
+
+const printChurch = ({churchName, MembershipNum, history}) => {
+    console.log(churchName,MembershipNum,history)
+}
+
+printChurch(church);
+
+/*OR*/
+const {churchName, MembershipNum, history} = church;
+console.log(churchName,MembershipNum,history);
+
+/*OR*/
+
+const hobbies = ['Driving', 'Thinking'];
+
+const [hobby1, hobby2] = hobbies;
+console.log(hobby1,hobby2);
