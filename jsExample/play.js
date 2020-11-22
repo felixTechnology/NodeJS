@@ -42,7 +42,8 @@ console.log(name, age, houseHobbies)
 console.log(summarizeUser(name, age,houseHobbies));*/
 
 
-/*Object....Method*/
+/*
+/!*Object....Method*!/
 
 const object = {
 
@@ -72,10 +73,32 @@ const country = {
 person.greet();
 
 country.history();
-
-
-
-
-
 console.log(object.name);
-console.log(object.name, object.age);
+console.log(object.name, object.age);*/
+
+/*ARRAYS*/
+
+const country = {
+    country: 'Ghana',
+    population: 20_000_000,
+    history (){
+        console.log('Hi, I am ' + this.country)
+    }
+
+};
+
+
+const hobbies = ['Sports','Cooking', true, 23.00, {}]
+
+/*for (let hobby of hobbies){
+    console.log(hobby);
+}*/
+
+for (let i= 0; i < hobbies.length; i++){
+
+    console.log(hobbies[i])
+}
+
+console.log(hobbies.map(hobby =>{
+    return 'Hobby : ' + hobby;
+}))
