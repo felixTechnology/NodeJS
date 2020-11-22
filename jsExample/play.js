@@ -118,7 +118,7 @@ console.log(country)*/
 
 /*Rest and Spread Operators*/
 
-const skills = ['computer', 'communication', 'negotiation', 'data management']
+/*const skills = ['computer', 'communication', 'negotiation', 'data management']
 
 const copiedArray = skills.slice();
 const copiedArrays = [skills];
@@ -139,4 +139,26 @@ const country = {
 
 const countryInfo = {...country};
 
-console.log(countryInfo);
+console.log(countryInfo);*/
+/*************************************************************************************************************/
+
+/*Rest Operator*/
+
+const toArray = (arg1, arg2, arg3) =>{
+
+    return [arg1, arg2, arg3];
+
+}
+
+console.log(toArray(2,4,6))
+
+
+
+const toArrays = (...args) =>{
+
+    return args;
+
+}
+
+
+console.log(toArrays(2,4,6,8,10,12))
