@@ -123,3 +123,47 @@ b primitive and reference types
 - Versatile language
 a. Runs in browser and directly on a PC/Server
 b. can perform a broad variety of tasks
+
+14. Understanding Arrow function
+- https://academind.com/learn/javascript/this-keyword-function-references/
+- assign your function to a variable
+example:
+----------
+ - const summerizeUser =  (userName, userAge, userHasHobby) =>{}
+ - the right side is called anonymous function because we dont setup a name after the function
+ -It is shorter form of a function
+
+ var  name = 'Felix Atsu';
+
+ var age = 29;
+
+ var houseHobbies = true;
+
+ const  summarizeUser =  (userName, userAge, userHasHobby) =>{
+     return (`Name is ${userName}  and age is ${userAge}  hobby is  ${userHasHobby}`);
+ }
+ console.log(name, age, houseHobbies)
+ console.log(summarizeUser(name, age,houseHobbies));
+
+ example 2
+ ---------
+ const add = (a,  b ) =>  a+ b
+
+ console.log(2,2)
+ console.log(add(2,2))
+
+ example 3
+ ----------
+ const sub = a =>  a - 2
+
+
+ console.log(sub(2))
+
+
+NOTE: When you have function with only parameter as shown immediate above you can taje out the parenthesis
+
+15.15. Working with Objects, Properties & Methods
+-https://academind.com/learn/javascript/reference-vs-primitive-values/
+
+16. Arrays & Array Methods
+-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#
