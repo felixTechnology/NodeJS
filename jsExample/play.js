@@ -216,7 +216,7 @@ console.log(hobby1,hobby2);*/
 
 /*Async Code*/
 
-const fetchData =  (callbacks) =>{
+/*const fetchData =  (callbacks) =>{
     setTimeout(() =>{ callbacks('DONE')}, 1500);
 }
 
@@ -225,6 +225,39 @@ setTimeout(() =>{
     fetchData( text =>{console.log(text)})
 
 }, 1);
+
+console.log('Hello');
+console.log('Hi..!!');*/
+/************************************************************************************************************************/
+
+const fetchData =  () =>{
+
+    const promise = new Promise((resolve, reject)=>{
+        setTimeout(() =>{
+            resolve('Done');
+
+        }, 1500);
+
+     });
+    return promise;
+    /*setTimeout(() =>{ callbacks('DONE')}, 1500);*/
+};
+
+setTimeout(() =>{
+    console.log('Timer is done')
+    fetchData()
+        .then(text =>
+        {console.log(text);
+        return fetchData();
+
+        })
+       .then(text2 => {
+           console.log(text2)
+
+       });
+
+
+}, 2000);
 
 console.log('Hello');
 console.log('Hi..!!');
