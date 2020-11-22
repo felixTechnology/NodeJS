@@ -176,3 +176,22 @@ NOTE: When dealing with reference types Arrays or object we can still push new v
 The reason is because reference types only store an address pointing at the place in memory where the array is stored
 and that pointer this address has not changed by adding a new element .So the things stored as a constant is just this pointer
 or just this address and that has not changed .There the const value has not changed
+
+17. Rest and Spread Operators
+- let you implementing a pattern where we add a new hobby, we don't edit the original array
+- but we create a new array with all the old values and the new value
+- it is a common pattern called immutability, where we never added existing values.
+-but where we always replace them with copies plus the changes
+- The idea behind it is that we avoid errors because we always have this clear approach of copy and then add it.
+- and dont edit exisitng objects which might lead to more unreadable code
+Example:
+
+const skills = ['computer', 'communication', 'negotiation', 'data management']
+
+const copiedArray = skills.slice();
+console.log(copiedArray);
+
+NOTE: slice() is used to copy an array and we can pass arguments to narrow down the range of elements we want to copy with no
+argument
+- spread operator is three dots (...) that we can add infront of an array or of an object .The three dots are operator just like the (+ or -)
+signs . They take the object or array after the operator and pull out the elements or properties and put it to whatever is around  that spread operator

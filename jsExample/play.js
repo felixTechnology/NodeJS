@@ -106,9 +106,37 @@ console.log(hobbies.map(hobby =>{
 }))*/
 /*************************************************************************************************/
 
-/*Arrays and Reference Types*/
+/*
+/!*Arrays and Reference Types*!/
 
 const country = ['Ghana', 'USA']
 
 country.push('Germany');
-console.log(country)
+console.log(country)*/
+
+/*****************************************************************************************************************/
+
+/*Rest and Spread Operators*/
+
+const skills = ['computer', 'communication', 'negotiation', 'data management']
+
+const copiedArray = skills.slice();
+const copiedArrays = [skills];
+const copiedArrays_ = [...skills];
+console.log(copiedArray);
+console.log(copiedArrays);
+console.log(copiedArrays_);
+
+
+const country = {
+    country: 'Ghana',
+    population: 20_000_000,
+    history (){
+        console.log('Hi, I am ' + this.country)
+    }
+
+};
+
+const countryInfo = {...country};
+
+console.log(countryInfo);
