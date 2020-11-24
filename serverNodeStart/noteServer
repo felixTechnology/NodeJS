@@ -15,3 +15,11 @@
 4. Our core node application basically is managed by this event loop, all our code is managed by this
 -node.js uses event driven approach for all kinds of stuff
 - not just for managing a server
+
+3. webserver that does different things depending on which route we enter
+- Load a page where USER can enter some data which will be stored in a file on the server once it is sent
+-We can do that by 1st passing the url. Store it in a new constant
+-Do it by accessing  request url (req.url) example (/test)
+-Add if statement , and check if the url is equal to just slash and only this will match .That is: if(url === '/'){}
+-inside the block curly bracket write the html with the head, title,body, form,button, add action in your form tag (action='/message')
+-
