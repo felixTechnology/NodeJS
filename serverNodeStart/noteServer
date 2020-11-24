@@ -1,1 +1,17 @@
 1. Creating a server through nodejs
+-we executed that file (serverNodeStart/app.js) with node js
+-it started a script where node.js went through the entire file
+-it parsed the code
+- registered the variables and functions and so on
+
+2. Core module (http, https, fs, path, os)
+3. Request listener isa function that will execute for every incoming request
+4.Event loop process is a process managed by node.js which keeps on running as long as there is work to do
+-as long as there are event listeners registered and one event listener we did register
+-and we never unregistered ,is that imcoming request listener we passed or we set up with the help of create server
+-we passed a function to create server
+-that is basically an ongoing event listener, one we didnt unregister from and we shouldnt because our server should of course stau up
+
+4. Our core node application basically is managed by this event loop, all our code is managed by this
+-node.js uses event driven approach for all kinds of stuff
+- not just for managing a server
