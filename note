@@ -218,4 +218,18 @@ Summary:
 -Node.js ofcourse will take some time to execute them but there is no delay unless your hardware has a delay issue
 - It is asyn because it does not execute or finish immediately,it takes a little time
 - Node.js will recognise the so-called callback function , that is if a function should execute in future it should call back later
--
+
+
+
+HOW THE WEB WORKS
+----------------
+1. We have a USER, A client
+- Could be you sitting infront of your browser, visiting a webpage or you are already on a webpage and submitting a form
+   Meaning you are interacting with pages.
+- entering url into a browser
+  Behind the scence the browser reaches out to some domain name servers and lookup that domain.
+  This domain is not really the address of your server. It is basically an encoded human readable version of that address you could say, your server
+  itself has just an IP address.
+- In the end you enter url and it will lead to a server.
+- you therefore browse or rhe browser sends a request to the server with a given IP address. The IP address belongs to the domain
+- With Node.js you run the code on your computer in the internet which has an IP Address
