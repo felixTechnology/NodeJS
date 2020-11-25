@@ -22,4 +22,6 @@
 -Do it by accessing  request url (req.url) example (/test)
 -Add if statement , and check if the url is equal to just slash and only this will match .That is: if(url === '/'){}
 -inside the block curly bracket write the html with the head, title,body, form,button, add action in your form tag (action='/message')
--
+- When we click on SEND button, we send a Post request to (/message) but we are not doing that in our previous code
+
+4.
