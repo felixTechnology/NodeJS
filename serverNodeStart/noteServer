@@ -24,4 +24,39 @@
 -inside the block curly bracket write the html with the head, title,body, form,button, add action in your form tag (action='/message')
 - When we click on SEND button, we send a Post request to (/message) but we are not doing that in our previous code
 
-4.
+4.Single Thread, Event Loop, Blocking Code
+-In our Node.js application we have our code
+-Node.js uses only one single JS thread (a thread is basically alike a process in your operating system)
+-So it uses that one thread so the question is how does it able to handle multiple request because
+-if we are not able to assign a new thread for each request, they ultimately end up all or all running in one on the same thread
+-these poses security question.
+-can you then acess data from request A, from request B, at the same time when performance is a matter of concern
+-doesnt it not mean if request A, is still doing work, request B cant be handled..? both is taken care of in Node.js
+- We look at Performance now and security later
+-Let say we have a code which access a File system as we have already written in thise course
+-Working with files is a task that takes longer because files can be very big and it doesnt necessairly complete instantly
+-therefore if doing this upon incoming request, a second request might have to wait because we are not able to handle it yet or even gets declined,
+  so basically our webpage is down for that user.
+- We will use a construct called (Event Loop), THIS EVENT LOOP will automatically be started by Node.Js WHEN YOUR PROGRAM START , you dont do that explixitly by yourself
+-This is responsible for handling event callback
+-Even Loop basically handles callbacks that contain fast finishing code
+- Couple of long taking operations are sent to a WORKER POOL which is managed by Node.js automatically.
+-WORKER POOL is responsible for heavy lifting. And it is kind of detached of your JS code ( it runs differently)
+- it can spin up multiple threads, it closely intervened with your operating system you are running the app on.
+-If you are doing something with a file where a WORKER from that pool will take care and will do its job totally detached from your code
+ and from the request and from the event loop. The one connection to the loop once the WORKER IS DONE.
+-Example  once we read a file, it will trigger the callback for that read file operation, and since event loop is responsible for the events
+ and callbacks,this will in endup in the event loop. There Nose.js will execute the appropriate callback
+
+- To solve this, at the beginning of each loop of each new iteration it checks if there are any timer callbacks it should execute.
+-basically there is a (set timeout) and (set interval) ,which is common from front-end JS which has this methods
+-In Node.js you set Timer, always pass a method, a function that it should execute when the timer is complete.
+-Example: if we have WRITE or READ file, we might have a call because that operation finished and will then execute these callbacks
+-IO means Input and Output operation which is a FILE OPERATIONS or network operation. Or generally blocking long takong operation.
+-When there are too many outstanding callbacks it will continue it loop iteration and postpone these callbacks to the next iteration to execute them
+-After working on these open callbacks and finishing them all it enters the POOL PHASE .The pool phase is where Node.js will look for
+  new IO events events and do its best to execute it callback if possible or register it as a pending callback.
+-it also check if there are any timer callbacks due to be executed ,if that is the case it will jump to that TIMER phase and execute them rightaway
+-and it can jump back there and not finish the iteration otherwise continue.
+- and next set immediate callbacks will be executed in a socalled check PHASE. SET IMMEDIATE is a bit like SET TIME OUT OR SET INTERVAL, just THAT
+ it will execute immediately but always after any open callbacks have been executed
