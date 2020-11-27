@@ -1,0 +1,237 @@
+1. We start by starting our Node.js Server
+- Start by creating your JS file (Example: app.js)
+- In the file we setup a new node.js server
+- Import a new http core module
+. we do this by creating a new constant (const) which you can name however you want. We name it (http) because we importing the (http) core module
+
+  Example Start1:  const http  = require('http');
+
+2. Http allow you to create a new server (http.createServer()) by calling the createServer method
+- the createServer() ,method, takes a function which will be executed at every incoming request
+
+    Example Start2: http.createServer((req, res) =>{})
+   . it takes both (req) and (res) argument. response is used to return response to the client (browser)
+
+3. To start the server store the return value of createValue in a variable .
+
+  Example Start 3: const server = http.createServer((req, res) =>{})
+
+4. call listen() method on the variable saving the server and pass localhost default server value (3000) to it
+
+    Example start 4: server.listen(3000);
+
+5. We will now handle two(2) different routes, that is, slash (/) & slash users (/users)
+ - To get it done
+   . go into the function
+    . pass the url by creating a variable to keep your access to url, by calling your first argument (req) and call method url on it
+    .This will take care of whatever the user will enter after localhost 3000 (example: localhost: 3000/atsu)
+
+      Example start 5: const server = http.createServer((req, res) =>{
+         const url = req.url
+      })
+
+ - check if the url is equal to just slash (/) , if that is the case, your enter the condition to do something
+   . First statement, we will send a response by setting a Header, telling the browser you sending HTML code, by setting ContentType to (text/html)
+      Example: res.setHeader('Content-Type', 'text/html')
+   . secondly, write your response, by creating a html document
+      Example: res.write('<html>');
+                res.write('<head><title>Assignment 1</title></head>');
+                res.write('<body><p>Welcome to my page...!!</p></body>');
+               res.write('</html>');
+              return res.end();
+     . consider where to return your value, you can add retrun to the res.end(), whether you have a code to run beyong that IF-STATEMENT or not
+
+ - Also check if the url has slash users (/users), if it is so enter the condition to perform a task
+     . put this code to the second IF-STATEMENT
+                        res.write('<html>');
+                         res.write('<head><title>Assignment 1</title></head>');
+                         res.write('<body><ul><li>User 1</li><li>User 2</li></body>');
+                         res.write('</html>');
+                         return res.end();
+
+ - Define a default code if neither of the two cases above is not true , you send a response page not found
+
+
+
+
+
+         Example start 6:
+         const server = http.createServer((req, res) =>{
+                 const url = req.url
+
+                 if(url === '/'){
+
+                        res.write('<html>');
+                        res.write('<head><title>Assignment 1</title></head>');
+                        res.write('<body><p>Welcome to my page...!!</p></body>');
+                        res.write('</html>');
+                        return res.end();
+
+                 }
+
+                  if(url === '/users')
+                  {
+
+                         res.write('<html>');
+                         res.write('<head><title>Assignment 1</title></head>');
+                         res.write('<body><ul><li>User 1</li><li>User 2</li></body>');
+                          res.write('</html>');
+                         return res.end();
+
+                  }
+
+              })
+
+6. Now from the immediate top we have two routes ,you can run your code in terminal (ex: node app.js) depending on the structure of your code
+   -in your browser first type (localhost: 3000/ ) and enter to observe the response
+   - type also (localhost: 3000/users) and observe response
+
+
+7. Now at the slash(/) condition let us add (<form></form> instead of the text ,so that we can make use of POST request from the browser.
+
+Example start 6:
+         const server = http.createServer((req, res) =>{
+                 const url = req.url
+
+                 if(url === '/'){
+
+                        res.write('<html>');
+                        res.write('<head><title>Assignment 1</title></head>');
+                        res.write('<body><form action='/create-user' method='POST' ><input type='text' name='username'></input><button type='submit'>Send</button></form></body>');
+                        res.write('</html>');
+                        return res.end();
+
+                 }
+
+                  if(url === '/users')
+                  {
+
+                         res.write('<html>');
+                         res.write('<head><title>Assignment 1</title></head>');
+                         res.write('<body><ul><li>User 1</li><li>User 2</li></body>');
+                          res.write('</html>');
+                         return res.end();
+
+                  }
+
+                   if(url === '/create-user')
+                 {
+
+
+
+                 }
+
+              })
+
+-THE form button is set to type (submit) because this will submit the request that will then be generated automatically by the form
+-on the form we register an Action which is basically the url which will be target by the auto-generated request .It is created by our example( /create-user)
+-we also set our method as POST
+- We have set our input and button which will send the request to our url.
+
+-create another IF-STATEMENT which will be targeted by the incoming request and log it to the console
+. Passing request data has to do with stream buffer,
+. create an array to store the chunks as they come-in (EX:  const body = []; )
+. THEN set your call-back event on the request object ,we receive the data event (EX: req.on('data');
+START WITH DATA EVENT
+--------------------
+A. pass a second argument which is a call-back function that will be executed everytime there is an incoming event or data. pass an argument (chunk) inside the function
+B. Add that to your body array using the push method, to add the chunk (EX: body.push(chunk);)
+-now we will have array of buffer chunks
+-we then need combination of all the chunks in one big buffer and then this array of buffer  should be returned into a string(translated into text).
+ Because the request data that is sent from browser is just text.
+
+
+            req.on('data', (chunk)=>{
+
+            body.push(chunk);
+
+            });
+
+. you also set the end event (EX: req.on('end'))
+-. THEN set your call-back event on the request object ,to end the request (EX: req.on('end');
+
+     END WITH DATA END
+     ----------------
+ A. We convert our chunk buffer data back to string in our end event
+ B. We know that all the data has been read and has been added to our body array.
+ B. Therefore we can now, parseBody constant, and take our body and create a new BUFFER based on that with concat ,we can create one BUFFER of all\
+     these chunks which are buffer themselves.
+
+     EXAMPLE: req.on('end', ()=>{
+        const parsedBody = Buffer.concat(body).toString();
+        console.log(parsedBody)
+      }):
+ C. We are just logging what the value the user sent . The output will look like this on console (EXAMPLE: username=whatever-the-user-entered). It is
+    username because that is the name I chose as the input name for my form
+ D. Now, take the parsedBody which a string and split it on the equal sign into two strings stored in the array .
+     Array start with index zero. So now that we have (username = felix). username becomes index 0, and felix index 1.
+
+     console.log(parsedBody.split('=')[1]);
+
+ e. RETURN The response after it IF-STATEMENT so that you dont get stuck by redirecting to status code, and telling the browser where to redirect to by setting location
+
+ - return the status
+ res.statusCode = 302;
+ res.setHeader('Location', '/');
+ res.end();
+
+
+ const server = http.createServer((req, res) =>{
+                 const url = req.url
+
+                 if(url === '/'){
+
+                        res.write('<html>');
+                        res.write('<head><title>Assignment 1</title></head>');
+                        res.write('<body><form action='/create-user' method='POST' ><input type='text' name='username'></input><button type='submit'>Send</button></form></body>');
+                        res.write('</html>');
+                        return res.end();
+
+                 }
+
+                  if(url === '/users')
+                  {
+
+                         res.write('<html>');
+                         res.write('<head><title>Assignment 1</title></head>');
+                         res.write('<body><ul><li>User 1</li><li>User 2</li></body>');
+                          res.write('</html>');
+                         return res.end();
+
+                  }
+
+                   if(url === '/create-user')
+                 {
+                      const body = [];
+                       /*req.on('data');*/
+                        req.on('data', (chunk)=>{
+
+                         body.push(chunk);
+
+                       });
+
+                       /*req.on('end')*/
+                       req.on('end', ()=>{
+                               const parsedBody = Buffer.concat(body).toString();
+                               console.log(parsedBody);
+                               console.log(parsedBody.split('=')[1]);
+                             }):
+
+                              res.statusCode = 302;
+                              res.setHeader('Location', '/');
+                              res.end();s
+
+                 }
+
+              })
+
+SUMMARY ABOVE
+We should be able to
+
+1. load the slash route
+2. see the form
+3. enter value
+4. hit the button
+5. reach the url on the server (/create-user)
+6. see that is logged using (console.log(parsed.split('=')[1];)
+7. And be redirected
