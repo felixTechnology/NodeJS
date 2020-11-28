@@ -1,0 +1,140 @@
+In the usual Node.js project we use the command (node [location file of your project))
+
+2. We will enhance forth use what we call NPM - Node package manager
+-navigate to your entire project
+-in the terminal type: (npm init) and enter
+-you will firs asked you of your package name. Which you can translate it with your project name
+. you can pick any name you want (Note if you dont enter any name it will give you want is in your parenthesis as your default name
+   example: package name: (nodejs), so nodejs becomes your default name
+
+- version leave it, just press enter
+- description: you can leave the description or you can type example (complete node.js guide), press enter
+- Entry point: leave it, just press enter
+-test command: leave it, just press enter
+-git respository: leave it, just press enter
+-keywords: leave it, just press enter
+-author: you can put your name there as the author
+-license: leave it, just press it
+- Is this OK? leave it, (if you dont plan to publish it publicly), just press enter
+
+3. After the above steps , it generate (package.json) file in your project
+- you see all the settings/configurations in your package.json file, which is a json format/ or lookslike js object
+- this is a configuration file
+.inside it we have a script section,which has a default script which aint doing anything for now
+. we can add our own script by and comma after the default script (,)
+   example:
+   {
+     "script": {
+        "test": "echo\"Error: no test specified\" && exit 1", (note this is the default)
+         "start": "node app.js"
+         "start-server": "node app.js"
+     }
+   }
+
+. now you can run your (npm start) in your terminal
+.note: this will let those you share your code with to start (npm start) without worrying which js file to run as entry file
+
+- Also if you use script names which are not recognisable names, you cant run it straight with (npm start)
+unless you use (npm run [script name]) EXAMPLE: npm run start-server
+***********************************************************************************************************************
+Installing 3rd Party packages
+-----------------------------------
+1. In the previous video we added a script in the configuration file (package.json) to start our application.
+2. the package.json is managed by node.js
+3.Now, we can install 3rd party packages because a typical node project looks like this in our local
+- Local Project
+-Your Code
+-Core Node Packages (fs package or http package)
+- Dependecies(3rd Party packages), this will call for the 3rd party installation
+  So to use some functionality of a code which you didnt write on your own and which is not included in Node.js
+  Packages could help you with parsing incoming requests,validating user input
+We will use packages like (express, body-parser, ). Note that there are over or about 1000 type of packages which offer utilities you
+can add to a project so you dont have to reinvent the wheel
+-packages are available in the npm Repository (cloud repository) where all the packages live
+- we can conviniently install and manage them via npm
+
+4. Currently,  anytime we cause a change in our code we have to end the server (ctrl + c) before we start the server again to run the changes
+-Now we want to automatically run the server without terminating it everytime we change a line of code. We achieve that using
+ 3-party package (we do that by help of, npm)
+ - install by using this command
+     NOTE: note that to know the package name you have to google and find out per the problem you want to solve
+ - You can use (npm install nodemon)
+ - you can define how the immediate above command has to be install because we have (development packages,production dependencies)
+ - So specifying which package especially for development purpose use this command (npm install nodemon --save--dev) or (npm install nodemon -g) this
+   will install in globally anywhere
+5. Now install the package as (npm install nodemon --save-dev), this will install in into your specific project.
+-When complated it give (node_modules folder, package log json file, and it updated package.json)
+- In the updated (package.json) , devDependencies section was added,and it stands for development dependencies
+-we can differentiate between different dependencies . Production dependencies will be dealt later.
+- the dart character (^) inside the dependencies defines how the package is or will be updated if we re-run (npm install) without
+   defining any extra package name because this command standlone
+- so when we re-run (npm install) at this point without deifning extra package name, it will go through all your packages mentioned in (package.json) and install them one by one
+   and automatic pick a later version if available
+- to know where where your packages are installed , it is done in the node_modules folder , you can find the (nodemon) folder in it.
+  . In the nodemon folder you will srr package.json in it which as its own dependencies
+- you can delete that entire node_modules if you want to free space, and you can reinstall the (npm install) to get it back any time
+- now that you have (nodemon) folder in your node_modules, you can call (nodemon) in the 'start' inside your configuration file
+  (EXAMPLE: "start": "nodemon app.js")
+- You can now go to your terminal and run (npm start), after starting it , any change you make in your code will run automatically
+****************************************************************************************************************************************************************
+UNDERSTANDING DIFFERENT ERRORS
+---------------------------------
+1. Syntax error (like forgetting closing BRACE, wrong naming,etc)
+2. runtime error , this is not code error but running code which breaks
+3. logical errors, this is most difficult one.
+
+FINDING SYNTAX ERROR
+--------------------
+Syntax error (like forgetting closing BRACE, wrong naming,etc)
+- the console point to line number of the error
+
+RUNTIME ERROR
+------------------
+Example is omitting the return statement in our code which is to break the execution to some point, before proceeding to other conditional code blocks when certain conditions
+are met
+
+LOGICAL ERROR
+----------------------
+
+
+DEBUGGING
+-----------
+1.Go to menu View -> select debug
+2. OR you can click on debug on the main VSCode menu -> click on the red pointer beside any of your lines of codes to debug
+3. To let your debug to restart and run your code automatically -> go to explorer view (incase you are on debug view) -> now click on DEBUG menu ->add configuration
+4.select node.js -> it will add (.vscode folder) -\> with (launch.json file) ->
+ NOTE: This allow you to configure how debugging works for your project and how it should behave
+ - you can add ('restart': true) ('runtimeExecutable': 'nodemon') ('console':'integratedTerminal')
+5. At this point when you start debugging by clicking it on the menu bar, it may fail, because it wont use the local (nodemon) ,it will look for it globally
+-to add it globally run ( npm install nodemon -g)
+
+WRAPPING/SUMMARY
+------------------
+1. We looked at how we can easily develop or build in Node.js
+2 We started with (npm - Node Package Manager) which allows us to manage our project
+- it dependencies (which added package.json) which gave us the opportunity to add scripts.
+- so with (npm init) you can initialise a new project, basically add (package.json)
+-npm scripts can be defined in the package.json to give you shortcuts to common tasks/command
+
+3.We use (npm) to install 3rd party packages
+-Node projects typically dont just use core modules and custom code but also third-party packages
+-you install them via npm
+-You can differentiate between production dependencies (--save), development dependencies (--save-dev) and global depencies (-g)
+
+4. ERROR
+A. We identified (Syntax, runtime, logical errors) can break a code
+B. Syntax and runtime errors throw (helpful) error messages (with line numbers)
+C. Logical errors can be fixed with testing and the help of the debugger
+
+5. DEGUGGING
+- Use the VS Code node debugger to step into your code and go through it step by step
+-Analyze variable values at runtime
+-Look into and manipulate variables at runtime
+-set breakpoints clearly (i.e respect the async/event-driven nature)
+
+*******************************************************************************************************************************************************************************
+
+
+--------------------------------------
+
+
