@@ -1,0 +1,109 @@
+
+1. Use to write basic Node.js programmes
+2. In Node.js we wrote too much code to do simple thing like extracting the body of an incoming request
+3.Many you dont want to do that, you want to focus of your Business Logic, the code that makes up your specific application
+4. We use Express.JS -> It is a framework we can install as 3-rd party package into our Node.js
+-gives us rules set that helps to work a lot of utility functions to help write clearer and cleaner code
+TOPICS
+------
+A. What is Express.js
+B. Using middleware
+C. Working with Requests & Responses (Elegantly)
+D.Routing
+E. RReturning HTML Pages Files
+
+What is Express.js
+-------------------
+-writing all server side logic can be complex, remember what we did to parse in the incoming request,
+- extracting the body we manually had to listen to the data event, to the end event and then create a buffer which we in the end converted to a string
+
+Express.JS helps in the following way
+- it doesnt have built in way of handling or parsing that data but it makes it easy
+. to isntall another package that easily be hooked into our prject that will then do the parsing for us
+
+FRAMEWORK: Is a set of helper functions but also a suite of tools and rules with which we work
+
+ALTERNATIVES:
+-------------
+(Vanilla Node.js, Adonis.js for PHP Laravel,koa.js, Sails.js)
+
+
+START:
+1. create your project node.js file (app.js)
+2. Import node.js package (npm init) by installing it
+3. Add your script ("start": "node app.js") to the package.json configuration file
+4. Add nodemon development package by (npm install nodemon --save--dev)
+5. Update the 'start': in configuration file to nodemon instead of node
+5. You can start your server (npm start)
+7. Install production dependency (npm install --save express)
+. we dont use it as just a tool during development
+. it will be an integral part of the application and will have to be installed on any server or computer
+  where we run our application once we deploy it
+. It is a major piece of our application
+8. After installing the dependency with package name (express) , the package.json will be updated with entry
+   "dependencies": {
+     "express": "^4.16.3"
+   }
+9. Now you can use it.
+- go into your app.js file,
+-import your express and pass it into a constant variable (const express = require('express'))
+- you can group it with your core module import ( const http = require('http');)
+Note: you can separate your node specific modules and 3rd party packages and your own import if you have them
+      Ex: console.log(routes.someText)
+-create an express application, and store in a constant name by running express as a function (const app = express();)
+NOTE: The express package which is the (require('express');) seems to exports a function in the end
+  The express function initialises new object, or the express js of the framework will store and manage lots of things for us behind the scenes
+-So now the (const app = express();) has made the variable (app) to now have lot of logic.
+ . The (app) is made to be a valid request handler
+ . you can then pass it inside (http.createServer(app);)   we have: const server = http.createServer(app)
+
+- Then you have (server.listen(3000);)
+-After all that, you go ahead and run (npm start) , which will start an automatic running server because of the (nodemon)
+**************************************************************************************************************************
+ADDING MIDDLEWARE
+------------------
+1. Means incoming request is automatically followed through a bunch of functions ny express.js
+2. Instead of having one request handler, you will actually have a possibility of hooking in multiple
+    functions which request will go through until you send a response
+3. This allows you to split your code into multiple blocks or pieces instead of having one huge function that does everything
+4. This is the pluggable nature of express.js, where one can use 3rd party packages which will give you  middleware functions that you can plug
+    into express.js
+5. Now, we will use the middleware in our project
+- Before we passed it to create server, we can use (app) as seen below, and call method (use();) which is defined
+  by express.js
+-   use(); allows us to add a new middleware function,
+-the use(), accept array of so-called request handlers and has other use cases too,
+- An easy way to use it is that you simply pass function to it, it will be executed for every incoming request and this function will
+   receive three arguments (req,res, next)
+- next, is a function which will be passed into the function by express.js
+   Note: we passing a function to the 'use' function, and we passing another function 'next' as a parameter in the function
+          passed inside 'use' method
+- the 'next' function has to be executed to allow the request tp travel on to the next middleware
+- To move from one middleware to another middleware we call the function 'next()' in the first middleware to enable it to travel to
+  next
+
+const http = require('http');
+/*const fs = require('fs');*///allows us to with with file system
+
+
+const express = require('express');
+
+const app = express();
+
+//middleware
+app.use(  (req,res,next) =>  {
+
+console.log('In the middleware');
+next();
+
+})
+
+app.use(  (req,res,next) =>  {
+
+    console.log('In the another middleware');
+    next();
+
+})
+const server = http.createServer(app);
+
+server.listen(3000);
