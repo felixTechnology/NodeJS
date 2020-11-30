@@ -101,9 +101,76 @@ next();
 app.use(  (req,res,next) =>  {
 
     console.log('In the another middleware');
-    next();
+     //in express js the Header in the response is set by default unlike what we did manually in Node.js
+         res.send(`<h1>Hello this from Express</h1>` ) //this (send();) is a new utility function, which allows us to send a response
 
 })
 const server = http.createServer(app);
 
 server.listen(3000);
+***************************************************************************************************************************************************************
+LOOKING BEHIND THE SCENES OF EXPRESS.JS
+----------------------------------------
+1. Go to express.js code in github, it's open source
+2. click on lib, and find the response js file, click on it
+3. search for 'send()'
+   - you will see how the function send() is defined internally
+   - there is a check to see if we are using outdated versions of that function
+4. we can shorten the code where we setup the server by replacing
+
+   const server = http.createServer(app);
+
+    server.listen(3000);
+
+    WITH:
+
+    app.listen(3000); & when we use this we dont need [const express = require('express');]
+*************************************************************************************************************************************************************************
+
+HANDLING DIFFERENT ROUTES
+---------------------------
+
+1.To do that we first of all remove our dummy middleware which is doing nothing for now
+
+EXAMPLE:
+//middleware
+app.use(  (req,res,next) =>  {
+
+console.log('In the middleware');
+next();//allows the request //in express js the Header in the response is set by default unlike what we did manually in Node.js
+
+})
+
+
+2. The second middleware should only trigger for requests that should go to just slash nothing
+- how can we filter for such request
+
+
+const http = require('http');
+/*const fs = require('fs');*///allows us to with with file system
+
+const express = require('express');
+
+const app = express();
+
+
+//middleware //FOR THIS SECTION REMOVE THIS MIDDLEWARE
+app.use(  (req,res,next) =>  {
+
+console.log('In the middleware');
+next();//allows the request //in express js the Header in the response is set by default unlike what we did manually in Node.js
+
+
+})
+
+app.use(  (req,res,next) =>  {
+
+    console.log('In the another middleware');
+    res.send(`<h1>Hello this from Express</h1>` ) //this (send();) is a new utility function, which allows us to send a response to continue to te next middleware in line
+
+})
+
+const server = http.createServer(app);
+
+server.listen(3000);
+

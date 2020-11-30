@@ -1,0 +1,38 @@
+1. Understand how we can work with POST requests or incoming requests
+-how we can extract data
+- Assume of '/add-product' we should be able to return a HTML PAGE with a form.
+- That will again return a form
+- wrap your return form in html <html></html>
+-add input tag in your form.
+EXAMPLE: res.send(`<html lang="fr"><form><input type="text" name="title"><button type="submit">Add Product</button></form></html>` )
+-the form needs an action which is the path/url to which the request has to be sent , also needs 'method='POST'
+   EXAMPLE res.send(`<html lang="fr"><form action="/product" method="post"><input type="text" name="title"><button type="submit">Add Product</button></form></html>` )
+
+- We need a middleware that will route request to,  /product,
+ . for redirecting we use [res.redirect('/')]
+
+- we need to extract the body of the incoming request..that is what the user will send  .
+ .express.js has convinient feature for that
+ .if you console.log(req.body) ,the (.body) is a new feature field added by express.js
+  EXAMPLE: console.log(req.body);
+
+- Go tto browser and enter, localhost:3000/add-product, you will see an input field , enter a text in the  input field and click send
+-- we will be redirected to slash
+NOTE: console.log(req.body);
+      Note that the req.body gives us the convenience property but by default,request doesnt try to parse the incoming request body
+      - To do that we need to register a parser and we do that by adding another middleware
+      -we typically do that before your route handling middlewares because the parsing of the body should done no matter where your request ends up
+      -Now, parse the incoming request body, we use the installation of 3rd party package
+       . run (npm install --save  body-parser)
+      - After installing the new package ,the body parser and we can import that here
+        .store it in a body parser constant -> const bodyParser = require('body-parser')
+         . app.use(bodyParser.urlencoded());
+         the urlencoded(), function yields us such a middleware function
+         .this parses such a function in the end, where we have /product, which we cant see, because we console.log(req.body) here.
+
+ *********************************************************************************************************************************************
+
+ USING EXPRESS ROUTER
+ ----------------------
+ 1, We want to export our logic in different files and import it into this file
+ 2. creating a new folder called, routes
