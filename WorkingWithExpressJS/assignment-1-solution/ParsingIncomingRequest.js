@@ -1,7 +1,7 @@
 
 /*const http = require('http');*/
 /*const fs = require('fs');*///allows us to with with file system
-
+const path = require('path');
 const express = require('express');
 
 const bodyParser = require('body-parser');
@@ -58,7 +58,8 @@ server.listen(3000);*/
 /*Adding 404 Route */
 app.use((req,res, next) =>{
 
-    res.status(404).send('<h1>Page  Not Found </h1>')
+    /*res.status(404).send('<h1>Page  Not Found </h1>')*/
+    res.status(404).sendFile(path.join(__dirname, 'views', '4040.html'))
 })
 
 app.listen(3000);
