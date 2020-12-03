@@ -16,6 +16,7 @@ const shopRoutes = require('./routes/shop')
 
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname,'public')))
 
 /*To use filtering mechanism- this allows us to put a comming starting segment for our our pat which all routes in a given file
 * use to outsource that into this ParsingIncomingRequest.js so that we dont have to repeat it for all routes
